@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
-using System.IO;
 
 namespace NaturalLanguageProcessor {
 	public class NaturalLanguageProcessor {
 		public NaturalLanguageProcessor () {
 		}
+
+		private readonly List<Tuple<string, int>> numbersInString = new List<Tuple<string, int>> {
+			new Tuple<string, int>("one", 1),
+			new Tuple<string, int>("two", 2),
+			new Tuple<string, int>("three", 3),
+			new Tuple<string, int>("four", 4),
+			new Tuple<string, int>("five", 5),
+			new Tuple<string, int>("six", 6),
+			new Tuple<string, int>("seven", 7),
+			new Tuple<string, int>("eight", 8),
+			new Tuple<string, int>("nine", 9)};
 
 		public List<IntentConfiguration> IntentConfigurations { get; private set; }
 		public List<ContextConfiguration> ContextConfigurations { get; private set; }
@@ -36,7 +46,7 @@ namespace NaturalLanguageProcessor {
 				var matchingEntity = matchingIntents.FirstOrDefault ();
 				Dictionary<string, List<string>> parameters = null;
 
-				if(matchingEntity.Entities != null && matchingEntity.Entities.Any())
+				if (matchingEntity.Entities != null && matchingEntity.Entities.Any ())
 					parameters = ProcessForEntities (matchingEntity.Entities, speechText);
 
 				return new IntentResult () {
@@ -49,24 +59,23 @@ namespace NaturalLanguageProcessor {
 
 		public List<string> GetSuggestions (string contextName) {
 			var contextConfigurations = from cc in this.ContextConfigurations
-									   where cc.Name == contextName
-                                       select cc;
+										where cc.Name == contextName
+										select cc;
 
 			if (contextConfigurations.Any ()) {
 				var contextConfiguration = contextConfigurations.FirstOrDefault ();
 				var intentConfigurations = from ic in this.IntentConfigurations
-										  where contextConfiguration.Intents.Contains (ic.IntentName)
-										  select ic;
+										   where contextConfiguration.Intents.Contains (ic.IntentName)
+										   select ic;
 
 				if (intentConfigurations.Any ()) {
 					var suggestions = new List<String> ();
-					intentConfigurations.ToList().ForEach (ic => {
+					intentConfigurations.ToList ().ForEach (ic => {
 						suggestions.AddRange (ic.Suggestions);
 					});
 
 					return suggestions;
-				}
-				else
+				} else
 					return null;
 			} else
 				return null;
@@ -117,10 +126,21 @@ namespace NaturalLanguageProcessor {
 							entity.RegexParametersMetaData.ForEach (parameterMetaData => {
 								if (parameterMetaData.Type == "number") {
 									var values = Regex.Split (matchedSubstring, @"\D+")
-									                  .Where (s => !string.IsNullOrWhiteSpace (s)).ToList();
+													  .Where (s => !string.IsNullOrWhiteSpace (s)).ToList ();
 
-									if (values.Any())
-										parameters.Add (parameterMetaData.Name, new List<string> () { values[entity.RegexParametersMetaData.IndexOf(parameterMetaData)] });
+									if (values != null && values.Any ()) {
+										if (!parameters.ContainsKey (parameterMetaData.Name))
+											parameters.Add (parameterMetaData.Name, new List<string> () { values [entity.RegexParametersMetaData.IndexOf (parameterMetaData)] });
+									} else {
+										var numberMatches = from w in matchedSubstring.Split (' ')
+															where this.numbersInString.Select (number => number.Item1).Contains (w, StringComparer.OrdinalIgnoreCase)
+															select w;
+
+										if (numberMatches != null && numberMatches.Any ()) {
+											if (!parameters.ContainsKey (parameterMetaData.Name))
+												parameters.Add (parameterMetaData.Name, new List<string> () { this.numbersInString.Where (n => n.Item1 == numberMatches.FirstOrDefault ()).FirstOrDefault ().Item2.ToString () });
+										}
+									}
 								}
 							});
 						}

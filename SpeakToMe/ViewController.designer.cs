@@ -16,6 +16,9 @@ namespace SpeakToMe
 		UIKit.UIPickerView pickerView { get; set; }
 
 		[Outlet]
+		UIKit.UITextView recordStatus { get; set; }
+
+		[Outlet]
 		UIKit.UITextView selectedScreenTextView { get; set; }
 
 		[Outlet]
@@ -31,14 +34,19 @@ namespace SpeakToMe
 				pickerView = null;
 			}
 
+			if (selectedScreenTextView != null) {
+				selectedScreenTextView.Dispose ();
+				selectedScreenTextView = null;
+			}
+
 			if (selectScreenButton != null) {
 				selectScreenButton.Dispose ();
 				selectScreenButton = null;
 			}
 
-			if (selectedScreenTextView != null) {
-				selectedScreenTextView.Dispose ();
-				selectedScreenTextView = null;
+			if (recordStatus != null) {
+				recordStatus.Dispose ();
+				recordStatus = null;
 			}
 		}
 	}

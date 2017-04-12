@@ -60,7 +60,7 @@ namespace SpeakToMe
 
 			this.pickerView.Model = new ScreensModel (this, nlp.ContextConfigurations.Select(cc => cc.Name).ToList());
 
-			speechIdleTimer = new System.Timers.Timer (5 * 1000);
+			speechIdleTimer = new System.Timers.Timer (3 * 1000);
 			speechIdleTimer.Elapsed += (sender, e) => {
 				this.stopSpeechRecognition ();
 				speechIdleTimer.Stop ();
@@ -108,7 +108,7 @@ namespace SpeakToMe
 
 			var audioSession = AVAudioSession.SharedInstance ();
 			NSError err;
-			err = audioSession.SetCategory (AVAudioSessionCategory.PlayAndRecord);
+			err = audioSession.SetCategory (AVAudioSessionCategory.PlayAndRecord, AVAudioSessionCategoryOptions.DefaultToSpeaker);
 			audioSession.SetMode (AVAudioSession.ModeMeasurement, out err);
 			err = audioSession.SetActive (true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
 
@@ -141,15 +141,24 @@ namespace SpeakToMe
 						var intent = nlp.GetMatchingIntent (result.BestTranscription.FormattedString);
 
 						string resultText;
-						if (intent != null)
-							resultText = intent.Action;
+						if (intent != null) {
+							textView.Text += "\nAction is "  + intent.Action + ".";
+							resultText = "Action is " + intent.Action + ". ";
+							if (intent.Parameters != null) {
+								intent.Parameters.ForEach (p => {
+									resultText += "Parameter " + p.Key + " with values" + string.Join (",", p.Value) + ". ";
+									textView.Text += "\nParameter " + p.Key + " with values " + string.Join (",", p.Value) + ". ";
+								});
+							}
+						}
 						else
 							resultText = "Sorry, I did not get that.";
 
 						var su = new AVSpeechUtterance (resultText) {
 							Rate = AVSpeechUtterance.MaximumSpeechRate / 2,
 							Voice = AVSpeechSynthesisVoice.FromLanguage ("en-US"),
-							PitchMultiplier = 1.0f
+							PitchMultiplier = 1.0f,
+							Volume = 1
 						};
 
 						ss.SpeakUtterance (su);
@@ -160,7 +169,10 @@ namespace SpeakToMe
 					recognitionRequest = null;
 					recognitionTask = null;
 					recordButton.Enabled = true;
-					recordButton.SetTitle ("Start Recording", UIControlState.Normal);
+					//recordButton.SetTitle ("Start Recording", UIControlState.Normal);
+					recordButton.Hidden = false;
+					recordStatus.Hidden = true;
+					speechIdleTimer.Stop ();
 				}
 			});
 
@@ -171,7 +183,6 @@ namespace SpeakToMe
 
 			audioEngine.Prepare ();
 			audioEngine.StartAndReturnError (out err);
-			textView.Text = "(Go ahead, I'm listening)";
 		}
 
 		#region ISFSpeechRecognizerDelegate
@@ -181,10 +192,10 @@ namespace SpeakToMe
 		{
 			if (available) {
 				recordButton.Enabled = true;
-				recordButton.SetTitle ("Start Recording", UIControlState.Normal);
+				//recordButton.SetTitle ("Start Recording", UIControlState.Normal);
 			} else {
 				recordButton.Enabled = false;
-				recordButton.SetTitle ("Recognition not available", UIControlState.Disabled);
+				//recordButton.SetTitle ("Recognition not available", UIControlState.Disabled);
 			}
 		}
 
@@ -199,10 +210,11 @@ namespace SpeakToMe
 				audioEngine.Stop ();
 				recognitionRequest?.EndAudio ();
 				recordButton.Enabled = false;
-				recordButton.SetTitle ("Stopping", UIControlState.Disabled);
+				//recordButton.SetTitle ("Stopping", UIControlState.Disabled);
 			} else {
 				StartRecording ();
-				recordButton.SetTitle ("Stop recording", UIControlState.Normal);
+				recordButton.Hidden = true;
+				recordStatus.Hidden = false;
 				speechIdleTimer.Start ();
 			}
 		}
@@ -211,7 +223,9 @@ namespace SpeakToMe
 			audioEngine.Stop ();
 			recognitionRequest?.EndAudio ();
 			recordButton.Enabled = false;
-			recordButton.SetTitle ("Stopping", UIControlState.Disabled);
+			//recordButton.SetTitle ("Stopping", UIControlState.Disabled);
+			recordButton.Hidden = false;
+			recordStatus.Hidden = true;
 		}
 
 		partial void selectScreenButton_Click (Foundation.NSObject sender) {

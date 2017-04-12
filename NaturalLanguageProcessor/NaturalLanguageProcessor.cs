@@ -9,6 +9,17 @@ namespace NaturalLanguageProcessor {
 		public NaturalLanguageProcessor () {
 		}
 
+		private readonly List<Tuple<string, int>> numbersInString = new List<Tuple<string, int>> {
+			new Tuple<string, int>("one", 1),
+			new Tuple<string, int>("two", 2),
+			new Tuple<string, int>("three", 3),
+			new Tuple<string, int>("four", 4),
+			new Tuple<string, int>("five", 5),
+			new Tuple<string, int>("six", 6),
+			new Tuple<string, int>("seven", 7),
+			new Tuple<string, int>("eight", 8),
+			new Tuple<string, int>("nine", 9)};
+
 		public List<IntentConfiguration> IntentConfigurations { get; private set; }
 		public List<ContextConfiguration> ContextConfigurations { get; private set; }
 
@@ -113,8 +124,20 @@ namespace NaturalLanguageProcessor {
 									var values = Regex.Split (matchedSubstring, @"\D+")
 									                  .Where (s => !string.IsNullOrWhiteSpace (s)).ToList();
 
-									if (values.Any())
-										parameters.Add (parameterMetaData.Name, new List<string> () { values[entity.RegexParametersMetaData.IndexOf(parameterMetaData)] });
+									if (values != null && values.Any ()) {
+										if(!parameters.ContainsKey(parameterMetaData.Name))
+											parameters.Add (parameterMetaData.Name, new List<string> () { values [entity.RegexParametersMetaData.IndexOf (parameterMetaData)] });
+									}
+									else {
+										var numberMatches = from w in matchedSubstring.Split(' ')
+															where this.numbersInString.Select (number => number.Item1).Contains (w, StringComparer.OrdinalIgnoreCase)
+														  	select w;
+
+										if (numberMatches != null && numberMatches.Any ()) {
+												if(!parameters.ContainsKey(parameterMetaData.Name))
+													parameters.Add (parameterMetaData.Name, new List<string> () { this.numbersInString.Where (n => n.Item1 == numberMatches.FirstOrDefault ()).FirstOrDefault ().Item2.ToString () });
+										}
+									}
 								}
 							});
 						}

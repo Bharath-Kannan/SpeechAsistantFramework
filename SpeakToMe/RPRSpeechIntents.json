@@ -26,8 +26,8 @@
 					"type": "number"
 		}],
         "values": [
-			"\\d beds|bed",
-			"beds|bed \\d"
+			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) beds|bed",
+			"beds|bed [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)"
         ]
       },
       {
@@ -37,8 +37,8 @@
 					"type": "number"
 		}],
         "values": [
-			"baths|bath \\d",
-			"\\d baths|bath"
+			"baths|bath [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)",
+			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) baths|bath"
         ]
       },
 	  {
@@ -52,8 +52,9 @@
 					"type": "number"
 		}],
         "values": [
-          "between \\d to \\d",        
-          "within \\d to \\d",
+          "between [1-9][0-9]* to [1-9][0-9]*",  
+          "between [1-9][0-9]* and [1-9][0-9]*",  
+          "within [1-9][0-9]* to [1-9][0-9]*",
 		  "price range of \\dm to \\dm"
         ]
       }
@@ -85,8 +86,8 @@
 					"type": "number"
 		}],
         "values": [
-			"\\d beds|bed",
-			"beds|deb \\d"
+			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) beds|bed",
+			"beds|deb [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)"
         ]
       },
       {
@@ -96,8 +97,8 @@
 					"type": "number"
 		}],
         "values": [
-			"baths|bath \\d",
-			"\\d baths|bath"
+			"baths|bath [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)",
+			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) baths|bath"
         ]
       },
       {
@@ -117,8 +118,8 @@
 					"type": "number"
 		}],
         "values": [
-          "between \\d to \\d",        
-          "within \\d to \\d",
+          "between [1-9][0-9]* to [1-9][0-9]*",        
+          "within [1-9][0-9]* to [1-9][0-9]*",
         ]
       }
     ]
