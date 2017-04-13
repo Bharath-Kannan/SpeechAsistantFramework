@@ -1,0 +1,14 @@
+﻿[
+	{
+		"name": "Global",
+		"intents": [ "SearchProperties" ]
+		},
+	{
+		"name": "SearchResultsScreen",
+		"intents": [ "FilterProperties", "SortProperties" ]
+		},
+	{
+		"name": "PropertyDetailsScreen",
+		"intents": [ "GetDirections", "EnableTrafficCounts" ]
+		}
+]
