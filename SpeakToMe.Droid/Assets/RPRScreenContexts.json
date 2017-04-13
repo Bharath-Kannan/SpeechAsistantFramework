@@ -1,7 +1,7 @@
 ﻿[
 	{
-		"name": "Global",
-		"intents": [ "SearchProperties" ]
+		"name": "global",
+		"intents": [ "SearchProperties", "SearchAddress" ]
 		},
 	{
 		"name": "SearchResultsScreen",

@@ -45,7 +45,7 @@ namespace SpeakToMe.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int icon = 2130837504;
 			
 			// aapt resource value: 0x7f020001
 			public const int mic = 2130837505;
@@ -69,14 +69,17 @@ namespace SpeakToMe.Droid
 			// aapt resource value: 0x7f050001
 			public const int SpeechTextView = 2131034113;
 			
-			// aapt resource value: 0x7f050003
-			public const int btnMic = 2131034115;
+			// aapt resource value: 0x7f050004
+			public const int btnMic = 2131034116;
 			
 			// aapt resource value: 0x7f050000
 			public const int btnShowScreen = 2131034112;
 			
-			// aapt resource value: 0x7f050004
-			public const int btnSpeak = 2131034116;
+			// aapt resource value: 0x7f050003
+			public const int btnSpeak = 2131034115;
+			
+			// aapt resource value: 0x7f050005
+			public const int voiceWebView = 2131034117;
 			
 			static Id()
 			{
@@ -107,11 +110,8 @@ namespace SpeakToMe.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int ApplicationName = 2130968577;
-			
 			// aapt resource value: 0x7f040000
-			public const int Hello = 2130968576;
+			public const int ApplicationName = 2130968576;
 			
 			static String()
 			{

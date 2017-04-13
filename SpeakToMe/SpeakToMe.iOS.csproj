@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -118,43 +118,117 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Images.xcassets\Contents.json" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@3x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@3x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@3x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-57x57@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-57x57@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-60x60@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-60x60@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-60x60@3x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-Small-50x50@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-72x72@1x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-72x72@2x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@1x.png" />
-	<ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@2x.png" />
-	<ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@3x.png" />
-	<ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5@2x.png" />
-    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\microphone.imageset\4c96MrGoi.png" />
-    <ImageAsset Include="Images.xcassets\microphone.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-1.png" />
-    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-2.png" />
-    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-3.png" />
-    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-4.png" />
-    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\microphone.png" />
+    <ImageAsset Include="Images.xcassets\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-57x57@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-57x57@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-60x60@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-60x60@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-60x60@3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-20x20@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-29x29@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-40x40@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-Small-50x50@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-72x72@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-72x72@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@1x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-76x76@3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5@2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\microphone.imageset\4c96MrGoi.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\microphone.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-1.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-3.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\microphone.imageset\4c96MrGoi-4.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\microphone.png">
+      <InProject>false</InProject>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpeechAssistantFramework\SpeechAssistantFramework.csproj">
