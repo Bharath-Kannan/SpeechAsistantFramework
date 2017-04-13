@@ -18,6 +18,7 @@
       "properties",
       "homes"
     ],
+    "considerInputTextAsParameter": true,
     "entities": [
       {
         "name": "bed",
@@ -26,8 +27,8 @@
 					"type": "number"
 		}],
         "values": [
-			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) beds|bed",
-			"beds|bed [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)"
+			"\b(beds|bed) ([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine)\b",
+			"\b([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine) (beds|bed)\b"
         ]
       },
       {
@@ -37,8 +38,8 @@
 					"type": "number"
 		}],
         "values": [
-			"baths|bath [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)",
-			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) baths|bath"
+			"\b(baths|bath) ([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine)\b",
+			"\b([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine) (baths|bath)\b"
         ]
       },
 	  {
@@ -59,6 +60,17 @@
         ]
       }
     ]
+  },
+    {
+    "intentName": "SearchAddress",
+    "Action": "SearchProperties",
+	"suggestions": [ "10002 W Irma, Peoria, AZ 85382",
+			"4737 Don Miguel Dr, Baldwin Hills, California, 90008"],
+    "keywords": [
+      	"\\b(Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming)\\b",
+		"\\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY)\\b"
+    ],
+	"considerInputTextAsParameter": true,
   },
 	{
     "intentName": "FilterProperties",
@@ -86,8 +98,8 @@
 					"type": "number"
 		}],
         "values": [
-			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) beds|bed",
-			"beds|deb [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)"
+			"\b(beds|bed) ([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine)\b",
+			"\b([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine) (beds|bed)\b"
         ]
       },
       {
@@ -97,8 +109,8 @@
 					"type": "number"
 		}],
         "values": [
-			"baths|bath [1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine)",
-			"[1-9][0-9]*|(one|two|three|four|five|six|seven|eight|nine) baths|bath"
+			"\b(baths|bath) ([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine)\b",
+			"\b([1-9][0-9]*|one|two|three|four|five|six|seven|eight|nine) (baths|bath)\b"
         ]
       },
       {

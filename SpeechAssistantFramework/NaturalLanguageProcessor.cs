@@ -49,6 +49,12 @@ namespace NaturalLanguageProcessor {
 				if (matchingEntity.Entities != null && matchingEntity.Entities.Any ())
 					parameters = ProcessForEntities (matchingEntity.Entities, speechText);
 
+				if (matchingEntity.ConsiderInputTextAsParameter) {
+					if (parameters == null)
+						parameters = new Dictionary<string, List<string>> ();
+					parameters.Add ("input", new List<string> () { speechText });
+				}
+
 				return new IntentResult () {
 					Action = matchingEntity.Action,
 					Parameters = parameters
@@ -85,7 +91,7 @@ namespace NaturalLanguageProcessor {
 			bool result = false;
 
 			if (ProcessForKeywords (intentConfiguration.Keywords, words))
-				if (ProcessForKeywords (intentConfiguration.Verbs, words))
+				if (ProcessForKeywords (intentConfiguration.Verbs, words) || intentConfiguration.Verbs == null)
 					result = true;
 
 
@@ -95,8 +101,11 @@ namespace NaturalLanguageProcessor {
 		private bool ProcessForKeywords (List<string> keywords, List<string> words) {
 			bool result = false;
 
+			if (keywords == null || !keywords.Any ())
+				return result;
+
 			var matchingWords = from w in words
-								where keywords.Contains (w, StringComparer.OrdinalIgnoreCase)
+								where keywords.Contains (w, new RegexEqualityComparer ())
 								select w;
 
 			if (matchingWords.Any ())
