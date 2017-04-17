@@ -195,16 +195,22 @@ namespace SpeakToMe.Droid
                     speakText = "Action Name is " + intentResult.Action;
                     if (intentResult.Parameters != null)
                     {
+                        var speakTextBuilder = new System.Text.StringBuilder();
+                        speakTextBuilder.Append(speakText);
+                        var textViewBuilder = new System.Text.StringBuilder();
+                        textViewBuilder.Append(textView.Text);
                         foreach (var paramter in intentResult.Parameters)
                         {
-                            textView.Text += "\r\n" + "Parameter Name: " + paramter.Key;
-                            textView.Text += "\r\n" + "Parameter Values: " + string.Join(", ", paramter.Value);
-                            speakText += " with parameter as" + paramter.Key;
+                            textViewBuilder.Append("\r\n" + "Parameter Name: " + paramter.Key);
+                            textViewBuilder.Append("\r\n" + "Parameter Values: " + string.Join(", ", paramter.Value));
+                            speakTextBuilder.Append(" with parameter as " + paramter.Key);
                             foreach (var item in paramter.Value)
                             {
-                                speakText += " " + item;
+                                speakTextBuilder.Append(" " + item);
                             }
                         }
+                        textView.Text = textViewBuilder.ToString();
+                        speakText = speakTextBuilder.ToString();
                     }
                     else
                         textView.Text += "\r\n" + "No specific parameters mentioned.";
